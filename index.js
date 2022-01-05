@@ -26,13 +26,15 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === '$shdw') {
+	if (commandName === 'shdw') {
+		console.log('Shadow Command Ran');
 		(async () => {
 			const coinPrice = await getPrice();
 			await interaction.reply('The price of $SHDW is: ' + coinPrice.data['genesysgo-shadow'].usd);
 		});
 	}
 	else if (commandName === 'staked') {
+		console.log('Staked Command Ran');
 		(async () => {
 			const shdwTotal = await getStakedShdw();
 			await interaction.reply('There are currently: ' + shdwTotal + 'Shadowy Super Coders staked.');
