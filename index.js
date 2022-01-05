@@ -15,8 +15,9 @@ client.once('ready', () => {
 	console.log('Shadow Bot operational');
 });
 client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
 	console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
+	if (!interaction.isCommand()) return;
+
 	const { commandName } = interaction;
 
 	if (commandName === 'shdw') {
