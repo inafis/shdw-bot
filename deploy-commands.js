@@ -5,7 +5,7 @@ const { clientId, guildId, token } = require('./static');
 
 
 const commands = [
-	new SlashCommandBuilder().setName('$shdw').setDescription('Fetches the latest $SHDW price'),
+	new SlashCommandBuilder().setName('shdw').setDescription('Fetches the latest $SHDW price'),
 	new SlashCommandBuilder().setName('staked').setDescription('Fetches the latest number of staked Super Coders'),
 ]
 	.map(command => command.toJSON());
