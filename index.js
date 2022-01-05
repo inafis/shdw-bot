@@ -12,6 +12,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const token = process.env.token;
 
 client.once('ready', () => {
+	console.log('Shadow Bot operational');
 	// express()
 	// 	.use(express.static(path.join(__dirname, 'public')))
 	// 	.set('views', path.join(__dirname, 'views'))
