@@ -3,7 +3,7 @@ require('dotenv').config();
 const { Client, Intents } = require('discord.js');
 const { getPrice, getStakedShdw } = require('./reply-commands');
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 // const express = require('express');
 // const path = require('path');
@@ -13,14 +13,6 @@ const token = process.env.token;
 
 client.once('ready', () => {
 	console.log('Shadow Bot operational');
-	// express()
-	// 	.use(express.static(path.join(__dirname, 'public')))
-	// 	.set('views', path.join(__dirname, 'views'))
-	// 	.set('view engine', 'ejs')
-	// 	.get('/', (req, res) => res.json({
-	// 		message:'Shadow Bot is running',
-	// 	}))
-	// 	.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 });
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
