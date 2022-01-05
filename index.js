@@ -2,15 +2,11 @@ require('dotenv').config();
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
 const { getPrice, getStakedShdw } = require('./reply-commands');
+console.log(getPrice);
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-// const express = require('express');
-// const path = require('path');
-// const PORT = process.env.PORT || 8000;
-
 const token = process.env.token;
-console.log(token);
 
 client.once('ready', () => {
 	console.log('Shadow Bot operational');
