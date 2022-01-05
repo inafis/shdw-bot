@@ -5,21 +5,21 @@ const { getPrice, getStakedShdw } = require('./reply-commands');
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-const http = require('http');
-const host = 'localhost';
-const port = 8000;
+const express = require('express');
+const path = require('path');
+const PORT = process.env.PORT || 8000;
 
-const requestListener = function(req, res) {
-	res.writeHead(200);
-	res.end('{"status":"Shdw-Bot is running"}');
-};
-const server = http.createServer(requestListener);
 const token = process.env.token;
 
 client.once('ready', () => {
-	server.listen(port, host, () => {
-		console.log(`Server is running on http://${host}:${port}`);
-	});
+	express()
+		.use(express.static(path.join(__dirname, 'public')))
+		.set('views', path.join(__dirname, 'views'))
+		.set('view engine', 'ejs')
+		.get('/', (req, res) => res.json({
+			message:'Shadow Bot is running',
+		}))
+		.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 });
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;

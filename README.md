@@ -39,6 +39,3 @@ To configure this bot to work with your discord you will need to:
 ## Deploy
 
 Finally, to enable your bot to run for your community you will need to deploy and host this application on your infrastructure provider of choice. A quick option would be to use Heroku. 
-
-
-
