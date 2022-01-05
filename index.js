@@ -28,7 +28,7 @@ client.on('interactionCreate', async interaction => {
 		console.log('Staked Command Ran');
 		(async () => {
 			const shdwTotal = await getStakedShdw();
-			await interaction.reply('There are currently: ' + shdwTotal + 'Shadowy Super Coders staked.');
+			await interaction.reply('There are currently: ' + shdwTotal.length + 'Shadowy Super Coders staked.');
 		})();
 	}
 });
