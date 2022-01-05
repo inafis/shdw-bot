@@ -11,7 +11,8 @@ const token = process.env.token;
 const changeStatus = async () => {
 	const coinPrice = await getPrice();
 	const sscTotal = await getStakedShdw();
-	const priceString = '$SHDW - ' + coinPrice;
+	const priceString = '$SHDW - ' + coinPrice.data['genesysgo-shadow'].usd;
+	console.log(priceString);
 	client.user.setPresence({
 		status: 'online',
 		activities: [{
@@ -19,7 +20,7 @@ const changeStatus = async () => {
 			type: 'WATCHING',
 		}, {
 			name:sscTotal.length.toString(),
-			type: 'PLAYING',
+			type: 'Watching',
 		},
 		],
 	});
