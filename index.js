@@ -1,14 +1,25 @@
 require('dotenv').config();
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
-const token = process.env.token;
 const { getPrice, getStakedShdw } = require('./reply-commands');
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-// When the client is ready, run this code (only once)
+const http = require('http');
+const host = 'localhost';
+const port = 8000;
+
+const requestListener = function(req, res) {
+	res.writeHead(200);
+	res.end('{"status":"Shdw-Bot is running"}');
+};
+const server = http.createServer(requestListener);
+const token = process.env.token;
+
 client.once('ready', () => {
-	console.log('Ready!');
+	server.listen(port, host, () => {
+		console.log(`Server is running on http://${host}:${port}`);
+	});
 });
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
