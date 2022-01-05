@@ -10,6 +10,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 // const PORT = process.env.PORT || 8000;
 
 const token = process.env.token;
+console.log(token);
 
 client.once('ready', () => {
 	console.log('Shadow Bot operational');
@@ -25,15 +26,14 @@ client.on('interactionCreate', async interaction => {
 		(async () => {
 			const coinPrice = await getPrice();
 			await interaction.reply('The price of $SHDW is: ' + coinPrice.data['genesysgo-shadow'].usd);
-		});
+		})();
 	}
 	else if (commandName === 'staked') {
 		console.log('Staked Command Ran');
 		(async () => {
 			const shdwTotal = await getStakedShdw();
 			await interaction.reply('There are currently: ' + shdwTotal + 'Shadowy Super Coders staked.');
-		});
-		await interaction.reply('Server info.');
+		})();
 	}
 });
 // Login to Discord with your client's token
