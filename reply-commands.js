@@ -9,12 +9,14 @@ module.exports = {
 };
 
 const getPrice = async () => {
+	console.log('Fetching $SHDW Price');
 	return await CoinGeckoClient.simple.price({
 		ids:['genesysgo-shadow'],
 	});
 };
 
 const getStakedShdw = async () => {
+	console.log('Fetching Staked SSC Tokens');
 	const connection = new solanaWeb3.Connection(
 		solanaWeb3.clusterApiUrl('mainnet-beta'),
 		'confirmed',
