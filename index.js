@@ -70,12 +70,17 @@ client.on('interactionCreate', async interaction => {
 		const id = interaction.options.getInteger('id');
 		console.log(id);
 		(async () => {
-			const rarity = await getRarity(collection);
-			const nft = rarity.data.items.filter((item) => {
-				return item.id == id;
-			});
-			console.log(nft);
-			await interaction.reply(nft.toString());
+			try {
+				const rarity = await getRarity(collection);
+				const nft = rarity.data.items.filter((item) => {
+					return item.id == id;
+				});
+				console.log(nft);
+				await interaction.reply(nft.toString());
+			}
+			catch (error) {
+				await interaction.reply('Unable to fetch rarity, HowRareIs is down');
+			}
 		})();
 	}
 });
