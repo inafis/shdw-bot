@@ -32,7 +32,7 @@ const changeStatus = async () => {
 			status: 'online',
 			activities: [{
 				name: stakedString,
-				type: 'LISTENING',
+				type: 'WATCHING',
 			}],
 		});
 		return;
