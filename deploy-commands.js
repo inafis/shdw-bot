@@ -7,15 +7,15 @@ const commands = [
 	new SlashCommandBuilder()
 		.setName('price')
 		.setDescription('Fetches the latest $SHDW price')
-		.addStringOption(option => option.setName('Coin').setDescription('Coin to fetch price data for')),
+		.addStringOption(option => option.setName('coin').setDescription('Coin to fetch price data for')),
 	new SlashCommandBuilder()
 		.setName('staked')
 		.setDescription('Fetches the latest number of staked, Super Coders'),
 	new SlashCommandBuilder()
 		.setName('rarity')
 		.setDescription('Get Rarity for a given NFT from HowRareIs')
-		.addStringOption(option => option.setName('Collection').setDescription('Enter the name of the collection'))
-		.addIntegerOption(option => option.setName('ID').setDescription('Enter the ID of the NFT')),
+		.addStringOption(option => option.setName('collection').setDescription('Enter the name of the collection'))
+		.addIntegerOption(option => option.setName('id').setDescription('Enter the ID of the NFT')),
 	new SlashCommandBuilder()
 		.setName('drops')
 		.setDescription('Get upcoming drops from HowRareIS'),
