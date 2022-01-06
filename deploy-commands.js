@@ -15,6 +15,9 @@ const commands = [
 		.setDescription('Get Rarity for a given NFT from HowRareIs')
 		.addStringOption(option => option.setName('collection').setDescription('Enter the name of the collection'))
 		.addIntegerOption(option => option.setName('id').setDescription('Enter the ID of the NFT')),
+	new SlashCommandBuilder()
+		.setName('drops')
+		.setDescription('Get upcoming drops from HowRareIS'),
 ]
 	.map(command => command.toJSON());
 

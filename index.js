@@ -2,7 +2,7 @@
 require('dotenv').config();
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
-const { getPrice, getStakedShdw, getRarity } = require('./reply-commands');
+const { getPrice, getStakedShdw, getRarity, getDrops } = require('./reply-commands');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -82,6 +82,18 @@ client.on('interactionCreate', async interaction => {
 				console.log(error);
 				await interaction.reply('Unable to fetch rarity, HowRareIs API is down');
 			}
+		})();
+	}
+	else if (commandName == 'drops') {
+		(async () => {
+			const drops = await getDrops();
+			let channelAnnouncement = '';
+			for (const [key, value] of Object.entries(drops)) {
+				value.each((collection) => {
+					channelAnnouncement += '\n' + collection.name + ' is dropping on ' + collection.date + ' at a mint price of ' + collection.price + ' and a total supply of ' + collection.nft_count;
+				});
+			}
+			await interaction.reply(channelAnnouncement);
 		})();
 	}
 });
