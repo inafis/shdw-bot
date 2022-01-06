@@ -2,8 +2,13 @@
 require('dotenv').config();
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
+const moment = require('moment');
 const { getPrice, getStakedTokens, getRarity, getDrops } = require('./reply-commands');
-
+const formatterUSD = new Intl.NumberFormat('en-US', {
+	style: 'currency',
+	currency: 'USD',
+	minimumFractionDigits: 0,
+});
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const token = process.env.token;
@@ -52,7 +57,9 @@ client.on('interactionCreate', async interaction => {
 		const coin = interaction.options.getString('coin');
 		(async () => {
 			const coinData = await getPrice(coin);
-			await interaction.reply('The price of $' + coinData.data.tickers[0].base + 'is: ' + coinData.data.market_data.current_price.usd + ', the ATH was ' + coinData.data.market_data.ath.usd + ' on ' + coinData.data.market_data.ath_date.usd + '. \n The ATL was ' + coinData.data.market_data.atl.usd + ' on ' + coinData.data.market_data.atl_date.usd + '. \n FDV: ' + coinData.data.market_data.fully_diluted_valuation.usd + '\n 24hr price change: ' + parseInt(coinData.data.market_data.price_change_percentage_24h).toFixed(2) + '% ');
+			const ath_date = moment(coinData.data.market_data.ath_date.usd);
+			const atl_date = moment(coinData.data.market_data.atl_date.usd);
+			await interaction.reply('The price of $' + coinData.data.tickers[0].base + ' is: ' + coinData.data.market_data.current_price.usd + ', the ATH was $' + coinData.data.market_data.ath.usd + ' on ' + ath_date.format('dddd, MMMM Do YYYY, h:mm:ss a') + '. \n The ATL was ' + coinData.data.market_data.atl.usd + ' on ' + atl_date.format('dddd, MMMM Do YYYY, h:mm:ss a') + '. \n FDV: ' + formatterUSD.format(coinData.data.market_data.fully_diluted_valuation.usd) + '\n 24hr price change: ' + parseInt(coinData.data.market_data.price_change_percentage_24h).toFixed(2) + '% ');
 		})();
 	}
 	else if (commandName === 'staked') {
