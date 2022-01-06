@@ -9,7 +9,12 @@ const stakeAccount = process.env.stakeAccount;
 
 module.exports = {
 	getPrice: async (id) => {
-		return await CoinGeckoClient.coins.fetch(id);
+		return await CoinGeckoClient.coins.fetch(id, {
+			developer_data:false,
+			localization:false,
+			sparkline: false,
+			community_data: false,
+		});
 	},
 	getStakedTokens: async () => {
 		const connection = new solanaWeb3.Connection(
