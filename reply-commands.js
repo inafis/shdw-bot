@@ -5,16 +5,13 @@ const bent = require('bent');
 
 const CoinGeckoClient = new CoinGecko();
 const getJson = bent('json');
+const stakeAccount = process.env.stakeAccount;
 
 module.exports = {
-	getPrice: async () => {
-		console.log('Fetching $SHDW Price');
-		return await CoinGeckoClient.simple.price({
-			ids:['genesysgo-shadow'],
-		});
+	getPrice: async (id) => {
+		return await CoinGeckoClient.coins.fetch(id);
 	},
-	getStakedShdw: async () => {
-		console.log('Fetching Staked SSC Tokens');
+	getStakedTokens: async () => {
 		const connection = new solanaWeb3.Connection(
 			solanaWeb3.clusterApiUrl('mainnet-beta'),
 			'confirmed',
@@ -27,7 +24,7 @@ module.exports = {
 			}, {
 				'memcmp': {
 					'offset': 32,
-					'bytes': '46BtRifF7jVcMYaoPu9E6Mdh9ahyEr8TMkrxKFwJ3QDa',
+					'bytes': stakeAccount,
 				},
 			},
 			],
@@ -38,7 +35,6 @@ module.exports = {
 		return await getJson('http://howrare.is/api/v0.1/collections');
 	},
 	getRarity: async (collection) => {
-		console.log('Attempting to fetch rarity at https://howrare.is/api/v0.1/collections/' + collection);
 		return await getJson('http://howrare.is/api/v0.1/collections/' + collection);
 	},
 	getDrops: async () => {

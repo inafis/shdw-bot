@@ -2,19 +2,19 @@
 require('dotenv').config();
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
-const { getPrice, getStakedShdw, getRarity, getDrops } = require('./reply-commands');
+const { getPrice, getStakedTokens, getRarity, getDrops } = require('./reply-commands');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const token = process.env.token;
-
+const presenceId = process.env.presenceId;
 let presence = 0;
 const changeStatus = async () => {
 	switch (presence) {
 	case 0: {
 		presence = 1;
-		const coinPrice = await getPrice();
-		const priceString = '$SHDW - $' + coinPrice.data['genesysgo-shadow'].usd;
+		const coin = await getPrice(presenceId);
+		const priceString = '$' + coin.tickers[0].base + '@ $' + coin.market_data.current_price.usd;
 		client.user.setPresence({
 			status: 'online',
 			activities: [{
@@ -26,7 +26,7 @@ const changeStatus = async () => {
 	}
 	case 1:{
 		presence = 0;
-		const sscTotal = await getStakedShdw();
+		const sscTotal = await getStakedTokens();
 		const stakedString = 'Total Staked ' + sscTotal.length.toString();
 		client.user.setPresence({
 			status: 'online',
@@ -48,27 +48,23 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'shdw') {
-		console.log('Shadow Command Ran');
+	if (commandName === 'price') {
+		const coin = interaction.options.getString('Coin');
 		(async () => {
-			const coinPrice = await getPrice();
-			await interaction.reply('The price of $SHDW is: ' + coinPrice.data['genesysgo-shadow'].usd);
+			const coinData = await getPrice(coin);
+			await interaction.reply('The price of $' + coinData.tickers[0].base + 'is: ' + coin.market_data.current_price.usd + ', the ATH was ' + coinData.ath.usd + ' on ' + coinData.ath_date.usd + '. \n The ATL was ' + coinData.atl.usd + ' on ' + coinData.atl_date.usd + '. \n FDV: ' + coinData.fully_diluted_valuation.usd + '\n 24hr price change: ' + coinData.price_change_percentage_24h.toFixed(2) + '% ');
 		})();
 	}
 	else if (commandName === 'staked') {
-		console.log('Staked Command Ran');
 		(async () => {
-			const shdwTotal = await getStakedShdw();
+			const shdwTotal = await getStakedTokens();
 			await interaction.reply('There are currently: ' + shdwTotal.length + ' Shadowy Super Coders staked.');
 		})();
 	}
 	else if (commandName === 'rarity') {
-		console.log('Rarity triggered');
 		let collection = interaction.options.getString('collection');
-		console.log(collection);
 		collection = collection.trim();
 		const id = interaction.options.getInteger('id');
-		console.log(id);
 		(async () => {
 			try {
 				const rarity = await getRarity(collection);
@@ -88,6 +84,7 @@ client.on('interactionCreate', async interaction => {
 		(async () => {
 			const drops = await getDrops();
 			let channelAnnouncement = '';
+			// eslint-disable-next-line no-unused-vars
 			for (const [key, value] of Object.entries(drops)) {
 				value.each((collection) => {
 					channelAnnouncement += '\n' + collection.name + ' is dropping on ' + collection.date + ' at a mint price of ' + collection.price + ' and a total supply of ' + collection.nft_count;
