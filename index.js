@@ -62,7 +62,7 @@ client.on('interactionCreate', async interaction => {
 			await interaction.reply('There are currently: ' + shdwTotal.length + ' Shadowy Super Coders staked.');
 		})();
 	}
-	else if (commandName === 'getRarity') {
+	else if (commandName === 'rarity') {
 		console.log('Rarity triggered');
 		let collection = interaction.options.get('input');
 		collection = collection.trim();
