@@ -14,8 +14,7 @@ const changeStatus = async () => {
 	case 0: {
 		presence = 1;
 		const coin = await getPrice(presenceId);
-		let { tickers } = coin;
-		tickers = tickers[0];
+		const { tickers } = coin;
 		console.log(tickers);
 		const priceString = '$' + tickers.base + '@ $' + coin.market_data.current_price.usd;
 		client.user.setPresence({
