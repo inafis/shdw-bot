@@ -17,10 +17,10 @@ const changeStatus = async () => {
 		status: 'online',
 		activities: [{
 			name: priceString,
-			type: 'WATCHING',
+			type: 'CUSTOM',
 		}, {
 			name: stakedString,
-			type: 'WATCHING',
+			type: 'CUSTOM',
 		},
 		],
 	});
