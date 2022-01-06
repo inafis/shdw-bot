@@ -14,8 +14,7 @@ const changeStatus = async () => {
 	case 0: {
 		presence = 1;
 		const coin = await getPrice(presenceId);
-		console.log(JSON.stringify(coin));
-		const priceString = '$' + coin.symbol + '@ $' + coin.market_data.current_price.usd;
+		const priceString = '$' + coin.data.tickers[0].base + '@ $' + coin.data.market_data.current_price.usd;
 		client.user.setPresence({
 			status: 'online',
 			activities: [{
@@ -53,7 +52,7 @@ client.on('interactionCreate', async interaction => {
 		const coin = interaction.options.getString('Coin');
 		(async () => {
 			const coinData = await getPrice(coin);
-			await interaction.reply('The price of $' + coinData.symbol + 'is: ' + coin.market_data.current_price.usd + ', the ATH was ' + coinData.ath.usd + ' on ' + coinData.ath_date.usd + '. \n The ATL was ' + coinData.atl.usd + ' on ' + coinData.atl_date.usd + '. \n FDV: ' + coinData.fully_diluted_valuation.usd + '\n 24hr price change: ' + coinData.price_change_percentage_24h.toFixed(2) + '% ');
+			await interaction.reply('The price of $' + coinData.data.tickers[0].base + 'is: ' + coin.market_data.current_price.usd + ', the ATH was ' + coinData.data.ath.usd + ' on ' + coinData.data.ath_date.usd + '. \n The ATL was ' + coinData.data.atl.usd + ' on ' + coinData.data.atl_date.usd + '. \n FDV: ' + coinData.data.fully_diluted_valuation.usd + '\n 24hr price change: ' + coinData.data.price_change_percentage_24h.toFixed(2) + '% ');
 		})();
 	}
 	else if (commandName === 'staked') {
