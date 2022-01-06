@@ -52,8 +52,9 @@ client.on('interactionCreate', async interaction => {
 		const coin = interaction.options.getString('Coin');
 		(async () => {
 			const coinData = await getPrice(coin);
-			console.log(coinData);
-			await interaction.reply('The price of $' + coinData.tickers[0].base + 'is: ' + coin.market_data.current_price.usd + ', the ATH was ' + coinData.ath.usd + ' on ' + coinData.ath_date.usd + '. \n The ATL was ' + coinData.atl.usd + ' on ' + coinData.atl_date.usd + '. \n FDV: ' + coinData.fully_diluted_valuation.usd + '\n 24hr price change: ' + coinData.price_change_percentage_24h.toFixed(2) + '% ');
+			const { tickers } = coinData;
+			console.log(tickers);
+			await interaction.reply('The price of $' + tickers[0].base + 'is: ' + coin.market_data.current_price.usd + ', the ATH was ' + coinData.ath.usd + ' on ' + coinData.ath_date.usd + '. \n The ATL was ' + coinData.atl.usd + ' on ' + coinData.atl_date.usd + '. \n FDV: ' + coinData.fully_diluted_valuation.usd + '\n 24hr price change: ' + coinData.price_change_percentage_24h.toFixed(2) + '% ');
 		})();
 	}
 	else if (commandName === 'staked') {
