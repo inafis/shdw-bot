@@ -79,6 +79,7 @@ client.on('interactionCreate', async interaction => {
 				await interaction.reply(nft.toString());
 			}
 			catch (error) {
+				console.log(error);
 				await interaction.reply('Unable to fetch rarity, HowRareIs is down');
 			}
 		})();
