@@ -2,7 +2,7 @@
 require('dotenv').config();
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
-const { getPrice, getStakedShdw } = require('./reply-commands');
+const { getPrice, getStakedShdw, getRarity } = require('./reply-commands');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -44,7 +44,6 @@ client.once('ready', () => {
 	setInterval(changeStatus, 15000);
 });
 client.on('interactionCreate', async interaction => {
-	console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
 	if (!interaction.isCommand()) return;
 
 	const { commandName } = interaction;
@@ -61,6 +60,19 @@ client.on('interactionCreate', async interaction => {
 		(async () => {
 			const shdwTotal = await getStakedShdw();
 			await interaction.reply('There are currently: ' + shdwTotal.length + ' Shadowy Super Coders staked.');
+		})();
+	}
+	else if (commandName === 'getRarity') {
+		let collection = interaction.options.get('input');
+		collection = collection.trim();
+		const id = interaction.options.get('int');
+		(async () => {
+			const rarity = await getRarity(collection);
+			const nft = rarity.data.items.filter((item) => {
+				return item.id == id;
+			});
+			console.log(nft);
+			await interaction.reply(nft.toString());
 		})();
 	}
 });

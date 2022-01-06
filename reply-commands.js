@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 const CoinGecko = require('coingecko-api');
 const solanaWeb3 = require('@solana/web3.js');
+const bent = require('bent');
+
 const CoinGeckoClient = new CoinGecko();
+const getJson = bent('json');
 
 module.exports = {
 	getPrice: async () => {
@@ -30,5 +33,11 @@ module.exports = {
 			],
 		};
 		return await connection.getProgramAccounts(ssc_key, ssc_config);
+	},
+	getCollections: async () => {
+		return await getJson('https://howrare.is/api/v0.1/collections');
+	},
+	getRarity: async (collection) => {
+		return await getJson('https://howrare.is/api/v0.1/collections/' + collection);
 	},
 };

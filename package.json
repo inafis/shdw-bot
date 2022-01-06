@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines":{
-	  "node": "16.x",
-	  "npm": "7.x"
+  "engines": {
+    "node": "16.x",
+    "npm": "7.x"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "@discordjs/builders": "^0.11.0",
     "@discordjs/rest": "^0.2.0-canary.0",
     "@solana/web3.js": "^1.31.0",
+    "bent": "^7.3.12",
     "coingecko-api": "^1.0.10",
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.5.0",

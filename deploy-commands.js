@@ -4,8 +4,17 @@ const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId, token } = require('./static');
 
 const commands = [
-	new SlashCommandBuilder().setName('shdw').setDescription('Fetches the latest $SHDW price'),
-	new SlashCommandBuilder().setName('staked').setDescription('Fetches the latest number of staked Super Coders'),
+	new SlashCommandBuilder()
+		.setName('shdw')
+		.setDescription('Fetches the latest $SHDW price'),
+	new SlashCommandBuilder()
+		.setName('staked')
+		.setDescription('Fetches the latest number of staked, Super Coders'),
+	new SlashCommandBuilder()
+		.setName('rarity')
+		.setDescription('Get Rarity for a given NFT from HowRareIs')
+		.addStringOption(option => option.setName('input').setDescription('Enter the name of the collection'))
+		.addIntegerOption(option => option.setName('int').setDescription('Enter the ID of the NFT')),
 ]
 	.map(command => command.toJSON());
 
