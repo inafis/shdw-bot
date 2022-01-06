@@ -80,7 +80,7 @@ client.on('interactionCreate', async interaction => {
 			}
 			catch (error) {
 				console.log(error);
-				await interaction.reply('Unable to fetch rarity, HowRareIs is down');
+				await interaction.reply('Unable to fetch rarity, HowRareIs API is down');
 			}
 		})();
 	}
