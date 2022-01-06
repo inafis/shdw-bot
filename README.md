@@ -3,6 +3,8 @@
 This project is a lightweight Discord bot for the Shadowy Super Coder DAO. Allowing community members to:
 - Check brice
 - Check # of staked Shadowy Super Coders
+- Display brice in presence (alternating)
+- Display Total staked super codes (alternating)
 
 
 # Getting Started
@@ -39,3 +41,5 @@ To configure this bot to work with your discord you will need to:
 ## Deploy
 
 Finally, to enable your bot to run for your community you will need to deploy and host this application on your infrastructure provider of choice. A quick option would be to use Heroku. 
+
+- Note that you'll need to run deploy-command.js once time to add the slash commands to your discord.

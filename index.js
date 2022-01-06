@@ -6,24 +6,38 @@ const { getPrice, getStakedShdw } = require('./reply-commands');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-
 const token = process.env.token;
+
+let presence = 0;
 const changeStatus = async () => {
-	const coinPrice = await getPrice();
-	const sscTotal = await getStakedShdw();
-	const priceString = '$SHDW - ' + coinPrice.data['genesysgo-shadow'].usd;
-	const stakedString = 'Total Staked ' + sscTotal.length.toString();
-	client.user.setPresence({
-		status: 'online',
-		activities: [{
-			name: priceString,
-			type: 'WATCHING',
-		}, {
-			name: stakedString,
-			type: 'LISTENING',
-		},
-		],
-	});
+	switch (presence) {
+	case 0: {
+		presence = 1;
+		const coinPrice = await getPrice();
+		const priceString = '$SHDW - ' + coinPrice.data['genesysgo-shadow'].usd;
+		client.user.setPresence({
+			status: 'online',
+			activities: [{
+				name: priceString,
+				type: 'WATCHING',
+			}],
+		});
+		return;
+	}
+	case 1:{
+		presence = 0;
+		const sscTotal = await getStakedShdw();
+		const stakedString = 'Total Staked ' + sscTotal.length.toString();
+		client.user.setPresence({
+			status: 'online',
+			activities: [{
+				name: stakedString,
+				type: 'LISTENING',
+			}],
+		});
+		return;
+	}
+	}
 };
 client.once('ready', () => {
 	console.log('Shadow Bot operational');
