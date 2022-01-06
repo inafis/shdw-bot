@@ -1,8 +1,8 @@
-# Shadowy Super Coder Bot
+# Floor Watchers Discord Bot
 
-This project is a lightweight Discord bot for the Shadowy Super Coder DAO. Allowing community members to:
-- Check brice
-- Check # of staked Shadowy Super Coders
+This project is a lightweight Discord bot for the Floor Watchers DAO. Allowing community members to:
+- Check brice of any coin
+- Check # of tokens in a given token account
 - Display brice in presence (alternating)
 - Display Total staked super codes (alternating)
 
@@ -21,8 +21,11 @@ This project is a lightweight Discord bot for the Shadowy Super Coder DAO. Allow
 token={Your Discord Bot Token}
 clientId={oAuth clientID of the Discord application associated to your bot}
 guildId={ServerId where you plan to Deploy}
+stakeAccount={Token account to retrieve token counts from}
+presenceId={ID of the token to update price in presence}
 ```
-
+- PresenceIds correspond to the coin ID on coingecko. Please check https://www.coingecko.com/en/api/documentation for the list of valid IDs.
+  
 ## Running Locally
 
 - ``` npm install```
