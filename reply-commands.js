@@ -38,6 +38,7 @@ module.exports = {
 		return await getJson('https://howrare.is/api/v0.1/collections');
 	},
 	getRarity: async (collection) => {
+		console.log('Attempting to fetch rarity');
 		return await getJson('https://howrare.is/api/v0.1/collections/' + collection);
 	},
 };

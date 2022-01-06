@@ -63,6 +63,7 @@ client.on('interactionCreate', async interaction => {
 		})();
 	}
 	else if (commandName === 'getRarity') {
+		console.log('Rarity triggered');
 		let collection = interaction.options.get('input');
 		collection = collection.trim();
 		const id = interaction.options.get('int');
