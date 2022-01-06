@@ -50,9 +50,10 @@ client.on('interactionCreate', async interaction => {
 
 	if (commandName === 'price') {
 		const coin = interaction.options.getString('Coin');
+		console.log(coin);
 		(async () => {
 			const coinData = await getPrice(coin);
-			await interaction.reply('The price of $' + coinData.data.tickers[0].base + 'is: ' + coin.market_data.current_price.usd + ', the ATH was ' + coinData.data.ath.usd + ' on ' + coinData.data.ath_date.usd + '. \n The ATL was ' + coinData.data.atl.usd + ' on ' + coinData.data.atl_date.usd + '. \n FDV: ' + coinData.data.fully_diluted_valuation.usd + '\n 24hr price change: ' + coinData.data.market_data.price_change_percentage_24h.toFixed(2) + '% ');
+			await interaction.reply('The price of $' + coinData.data.tickers[0].base + 'is: ' + coin.market_data.current_price.usd + ', the ATH was ' + coinData.data.ath.usd + ' on ' + coinData.data.ath_date.usd + '. \n The ATL was ' + coinData.data.atl.usd + ' on ' + coinData.data.atl_date.usd + '. \n FDV: ' + coinData.data.fully_diluted_valuation.usd + '\n 24hr price change: ' + parseInt(coinData.data.market_data.price_change_percentage_24h).toFixed(2) + '% ');
 		})();
 	}
 	else if (commandName === 'staked') {
