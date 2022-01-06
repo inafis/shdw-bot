@@ -59,7 +59,7 @@ client.on('interactionCreate', async interaction => {
 			const coinData = await getPrice(coin);
 			const ath_date = moment(coinData.data.market_data.ath_date.usd);
 			const atl_date = moment(coinData.data.market_data.atl_date.usd);
-			await interaction.reply('The price of $' + coinData.data.tickers[0].base + ' is: ' + coinData.data.market_data.current_price.usd + ', the ATH was $' + coinData.data.market_data.ath.usd + ' on ' + ath_date.format('dddd, MMMM Do YYYY, h:mm:ss a') + '. \n The ATL was ' + coinData.data.market_data.atl.usd + ' on ' + atl_date.format('dddd, MMMM Do YYYY, h:mm:ss a') + '. \n FDV: ' + formatterUSD.format(coinData.data.market_data.fully_diluted_valuation.usd) + '\n 24hr price change: ' + parseInt(coinData.data.market_data.price_change_percentage_24h).toFixed(2) + '% ');
+			await interaction.reply('The price of $' + coinData.data.tickers[0].base + ' is: ' + coinData.data.market_data.current_price.usd + ', the ATH was $' + coinData.data.market_data.ath.usd + ' on ' + ath_date.format('dddd, MMMM Do YYYY, h:mm:ss a') + '. \n The ATL was $' + coinData.data.market_data.atl.usd + ' on ' + atl_date.format('dddd, MMMM Do YYYY, h:mm:ss a') + '. \n FDV: ' + formatterUSD.format(coinData.data.market_data.fully_diluted_valuation.usd) + '\n 24hr price change: ' + parseInt(coinData.data.market_data.price_change_percentage_24h).toFixed(2) + '% ');
 		})();
 	}
 	else if (commandName === 'staked') {
