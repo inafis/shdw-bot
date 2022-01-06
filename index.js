@@ -64,10 +64,11 @@ client.on('interactionCreate', async interaction => {
 	}
 	else if (commandName === 'rarity') {
 		console.log('Rarity triggered');
-		let collection = interaction.options.getString('input');
+		let collection = interaction.options.getString('collection');
 		console.log(collection);
 		collection = collection.trim();
-		const id = interaction.options.getInteger('int');
+		const id = interaction.options.getInteger('id');
+		console.log(id);
 		(async () => {
 			const rarity = await getRarity(collection);
 			const nft = rarity.data.items.filter((item) => {

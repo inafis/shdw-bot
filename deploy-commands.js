@@ -13,8 +13,8 @@ const commands = [
 	new SlashCommandBuilder()
 		.setName('rarity')
 		.setDescription('Get Rarity for a given NFT from HowRareIs')
-		.addStringOption(option => option.setName('input').setDescription('Enter the name of the collection'))
-		.addIntegerOption(option => option.setName('int').setDescription('Enter the ID of the NFT')),
+		.addStringOption(option => option.setName('collection').setDescription('Enter the name of the collection'))
+		.addIntegerOption(option => option.setName('id').setDescription('Enter the ID of the NFT')),
 ]
 	.map(command => command.toJSON());
 
