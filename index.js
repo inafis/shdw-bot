@@ -49,7 +49,7 @@ client.on('interactionCreate', async interaction => {
 	const { commandName } = interaction;
 
 	if (commandName === 'price') {
-		const coin = interaction.options.getString('Coin');
+		const coin = interaction.options.getString('coin');
 		console.log(coin);
 		(async () => {
 			const coinData = await getPrice(coin);
