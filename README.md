@@ -1,5 +1,7 @@
 # Floor Watchers Discord Bot
 
+![Bot Preview](https://i.imgur.com/hpxF8H4.gif)
+
 This project is a lightweight Discord bot for the Floor Watchers DAO. Allowing community members to:
 - Check brice of any coin
 - Check # of tokens in a given token account
