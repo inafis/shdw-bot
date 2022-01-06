@@ -14,6 +14,7 @@ const changeStatus = async () => {
 	case 0: {
 		presence = 1;
 		const coin = await getPrice(presenceId);
+		console.log(JSON.stringify(coin))
 		const priceString = '$' + coin.symbol + '@ $' + coin.market_data.current_price.usd;
 		client.user.setPresence({
 			status: 'online',
