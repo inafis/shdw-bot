@@ -35,13 +35,13 @@ module.exports = {
 		return await connection.getProgramAccounts(ssc_key, ssc_config);
 	},
 	getCollections: async () => {
-		return await getJson('https://howrare.is/api/v0.1/collections');
+		return await getJson('http://howrare.is/api/v0.1/collections');
 	},
 	getRarity: async (collection) => {
 		console.log('Attempting to fetch rarity at https://howrare.is/api/v0.1/collections/' + collection);
-		return await getJson('https://howrare.is/api/v0.1/collections/' + collection);
+		return await getJson('http://howrare.is/api/v0.1/collections/' + collection);
 	},
 	getDrops: async () => {
-		return await getJson('https://howrare.is/api/v0.1/drops');
+		return await getJson('http://howrare.is/api/v0.1/drops');
 	},
 };
