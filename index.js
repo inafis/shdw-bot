@@ -14,7 +14,7 @@ const changeStatus = async () => {
 	case 0: {
 		presence = 1;
 		const coinPrice = await getPrice();
-		const priceString = '$SHDW - ' + coinPrice.data['genesysgo-shadow'].usd;
+		const priceString = '$SHDW - $' + coinPrice.data['genesysgo-shadow'].usd;
 		client.user.setPresence({
 			status: 'online',
 			activities: [{
