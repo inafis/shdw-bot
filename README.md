@@ -3,10 +3,11 @@
 ![Bot Preview](https://i.imgur.com/hpxF8H4.gif)
 
 This project is a lightweight Discord bot for the Floor Watchers DAO. Allowing community members to:
-- Check brice of any coin
-- Check # of tokens in a given token account
-- Display brice in presence (alternating)
-- Display Total staked super codes (alternating)
+- Check price of any coin (/price)
+- Check # of tokens in a given token account (/staked)
+- Check upcoming drops from HowRareIs (/drops)
+- Display price of a token in presence (alternating)
+- Display total staked # of tokens for a given account (alternating)
 
 
 # Getting Started
