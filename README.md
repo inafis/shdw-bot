@@ -2,7 +2,7 @@
 
 ![Bot Preview](https://i.imgur.com/hpxF8H4.gif)
 
-This project is a lightweight Discord bot for the Floor Watchers DAO. Allowing community members to:
+This project is a lightweight Discord bot for Solana crypto communities. Allowing community members to:
 - Check price of any coin (/price)
 - Check # of tokens in a given token account (/staked)
 - Check upcoming drops from HowRareIs (/drops)
