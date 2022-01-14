@@ -62,12 +62,31 @@ const changeStatus = async () => {
 client.once("ready", () => {
   console.log("Shadow Bot operational");
   setInterval(changeStatus, 15000);
-
 });
-client.on('messageCreate', async(message)=>{
-	if(message.content.toString().toLowerCase().includes('tekika'))
-	message.reply(`${message.author.username.toString()} only going to warn you once. Don't mention it again.`)
-})
+client.on("messageCreate", async (message) => {
+  let messagePicker = Math.floor(Math.random() * 5);
+  if (message.author.bot) {
+    return;
+  } else if (message.content.toString().toLowerCase().includes("tekika")) {
+    if (messagePicker == 0) {
+      message.reply(
+        `${message.author.username.toString()} only going to warn you once. Don't mention it again.`
+      );
+    } else if (messagePicker == 1) {
+      message.reply(
+        `https://media0.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif?cid=ecf05e477e799e4d1dc4ff41b80b80e6a03eaa1d2008f21b&rid=giphy.gif&ct=g`
+      );
+    } else if (messagePicker == 2) {
+      message.reply(`${message.author.username.toString()} banning in 3..2..`);
+    } else if (messagePicker == 3) {
+      message.reply(`Please, stop!`);
+    } else if (messagePicker == 4) {
+      message.reply(`@Sook do something`);
+    } else if (messagePicker == 5) {
+      message.reply(`Are you a sicko, son?`);
+    }
+  }
+});
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
