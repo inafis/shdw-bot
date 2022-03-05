@@ -22,14 +22,14 @@ module.exports = {
 			'confirmed',
 		);
 		const PublicKey = solanaWeb3.PublicKey;
-		const ssc_key = new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
+		const TOKEN_PROGRAM_ID = new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
 		const ssc_config = {
 			filters: [{
 				'dataSize': 165,
 			}, {
 				'memcmp': {
 					'offset': 32,
-					'bytes': stakeAccount,
+					'bytes': TOKEN_PROGRAM_ID,
 				},
 			},
 			],
